@@ -1,0 +1,30 @@
+# Dependencies and build output
+node_modules
+.next
+out
+build
+coverage
+*.tsbuildinfo
+
+# Secrets
+.env
+.env.*
+!.env.template
+
+# Version control and editors
+.git
+.gitignore
+.idea
+.vscode
+
+# Logs and local caches
+*.log
+.pnpm-store
+.turbo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+compose*.yaml
+Dockerfile
