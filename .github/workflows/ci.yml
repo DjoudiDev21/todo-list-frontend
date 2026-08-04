@@ -164,6 +164,7 @@ jobs:
         uses: docker/build-push-action@v7
         with:
           context: .
+          no-cache: true
           build-args: |
             NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=${{ vars.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
             NEXT_PUBLIC_API_URL=${{ vars.NEXT_PUBLIC_API_URL }}

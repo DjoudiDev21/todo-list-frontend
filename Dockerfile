@@ -18,6 +18,20 @@ ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
 ENV NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=$NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
 ENV NEXT_TELEMETRY_DISABLED=1
 
+RUN node -e '\
+  const value = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || ""; \
+  const encoded = value.replace(/^pk_(test|live)_/, ""); \
+  const decoded = Buffer.from(encoded, "base64").toString("utf8"); \
+  console.log({ \
+    present: Boolean(value), \
+    prefix: value.slice(0, 8), \
+    length: value.length, \
+    decoded, \
+    endsWithDollar: decoded.endsWith("$") \
+  }); \
+  if (!value.startsWith("pk_live_") || !decoded.endsWith("$")) process.exit(1); \
+'
+
 RUN pnpm build
 
 FROM base AS development
