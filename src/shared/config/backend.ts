@@ -1,5 +1,7 @@
-const DEFAULT_BACKEND_URL = 'http://localhost:8080';
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
-export const BACKEND_URL = (
-  process.env.NEXT_PUBLIC_BACKEND_URL ?? DEFAULT_BACKEND_URL
-).replace(/\/$/, '');
+if (!apiUrl) {
+    throw new Error('NEXT_PUBLIC_API_URL is required.');
+}
+
+export const BACKEND_API_URL = apiUrl.replace(/\/$/, '');

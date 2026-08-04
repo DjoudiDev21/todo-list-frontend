@@ -1,4 +1,4 @@
-import { BACKEND_URL } from '@/shared/config/backend';
+import { BACKEND_API_URL } from '@/shared/config/backend';
 import type { BackendUserProfile } from '../../domain/entities/backend-user-profile.entity';
 import type { AuthStatus } from '../../domain/entities/auth-session.entity';
 
@@ -35,7 +35,7 @@ export class GetCurrentUserUseCase {
     if (status !== 'authenticated') return null;
 
     const response = await this.authenticatedFetch(
-      `${BACKEND_URL}/api/v1/users/me`,
+      `${BACKEND_API_URL}/api/v1/users/me`,
       {
         method: 'GET',
         headers: { Accept: 'application/json' },
